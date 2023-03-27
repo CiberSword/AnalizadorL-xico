@@ -23,10 +23,6 @@ consChar \'[^\']\'
 consString \"[^\"]*\"
 consReal {dig}+\.{dig}+
 
-
-
-
-
 %%
 {consString} fprintf(archSal," %s es una cadena\n", yytext);
 {palRes} fprintf(archSal," %s es una palabra reservada\n", yytext);
