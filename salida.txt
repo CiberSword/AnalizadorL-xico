@@ -1,0 +1,118 @@
+ include es un identificador
+ < es un operador relacional
+ stdio es un identificador
+ > es un operador relacional
+ int es un identificador
+ main es un identificador
+ ( es un simbolo especial
+ ) es un simbolo especial
+ { es un simbolo especial
+ ent es una palabra reservada
+ digito es un identificador
+ -> es un operador de asignación
+ 0 es un numero entero
+ , es un simbolo especial
+ numero es un identificador
+ ; es un simbolo especial
+ real es una palabra reservada
+ xoxo es un identificador
+ -> es un operador de asignación
+ 5.32 es un numero real
+ ; es un simbolo especial
+ simb es una palabra reservada
+ yop es un identificador
+ -> es un operador de asignación
+ '@' es un simbolo
+ ; es un simbolo especial
+ largo es un identificador
+ -> es un operador de asignación
+ 2677 es un numero entero
+ ; es un simbolo especial
+ octal es un identificador
+ -> es un operador de asignación
+ 016 es un numero octal
+ ; es un simbolo especial
+ hexa es un identificador
+ -> es un operador de asignación
+ 0x16 es un numero hexadecimal
+ ; es un simbolo especial
+ printf es un identificador
+ ( es un simbolo especial
+ "Ejemplo del lenguaje nuevo" es una cadena
+ ) es un simbolo especial
+ ; es un simbolo especial
+ printf es un identificador
+ ( es un simbolo especial
+ "%ld" es una cadena
+ , es un simbolo especial
+ largo es un identificador
+ ) es un simbolo especial
+ ; es un simbolo especial
+ haz es una palabra reservada
+ { es un simbolo especial
+ printf es un identificador
+ ( es un simbolo especial
+ "%d " es una cadena
+ , es un simbolo especial
+ digito es un identificador
+ + es un operador aritmetico
+ + es un operador aritmetico
+ ) es un simbolo especial
+ ; es un simbolo especial
+ } es un simbolo especial
+ mientras es una palabra reservada
+ { es un simbolo especial
+ ( es un simbolo especial
+ digito es un identificador
+ <= es un operador relacional
+ 9 es un numero entero
+ ) es un simbolo especial
+ ; es un simbolo especial
+ } es un simbolo especial
+ para es una palabra reservada
+ ( es un simbolo especial
+ numero es un identificador
+ = es un operador relacional
+ 0 es un numero entero
+ ; es un simbolo especial
+ numero es un identificador
+ = es un operador relacional
+ 3 es un numero entero
+ ; es un simbolo especial
+ numero es un identificador
+ + es un operador aritmetico
+ + es un operador aritmetico
+ ) es un simbolo especial
+ { es un simbolo especial
+ printf es un identificador
+ ( es un simbolo especial
+ "%d" es una cadena
+ , es un simbolo especial
+ numero es un identificador
+ ) es un simbolo especial
+ } es un simbolo especial
+ si es una palabra reservada
+ ( es un simbolo especial
+ xoxo es un identificador
+ < es un operador relacional
+ 10.2 es un numero real
+ ) es un simbolo especial
+ { es un simbolo especial
+ printf es un identificador
+ ( es un simbolo especial
+ "Es menor" es una cadena
+ ) es un simbolo especial
+ ; es un simbolo especial
+ } es un simbolo especial
+ sino es una palabra reservada
+ { es un simbolo especial
+ printf es un identificador
+ ( es un simbolo especial
+ "No es menor" es una cadena
+ ) es un simbolo especial
+ ; es un simbolo especial
+ } es un simbolo especial
+ regresa es una palabra reservada
+ 0 es un numero entero
+ ; es un simbolo especial
+ } es un simbolo especial
