@@ -8,6 +8,11 @@ largo -> 2677;
 octal -> 016;
 hexa -> 0x16;
 
+2dSADSA
+_asdsda
+
+.21
+printf("Cadena con salto de linea\n");
 printf("Ejemplo del lenguaje nuevo");
 
 

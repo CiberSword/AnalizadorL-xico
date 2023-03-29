@@ -1,0 +1,4 @@
+Error Lexico - Identificador incorrecto: 2dSADSA
+Error Lexico - Identificador incorrecto: _asdsda
+Error Lexico - Numero Real incorrecto: .21
+Error Lexico - Cadena incorrecta: "Cadena con salto de linea\n"

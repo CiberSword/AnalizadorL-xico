@@ -18,6 +18,7 @@ FILE *archSal;
 FILE *archCadenas;
 FILE *archReales;
 FILE *archIds;
+FILE *archErrores;
 
 // Declaración de las estructuras para cada elemento
 
@@ -85,24 +86,28 @@ char buffer[20];
 
 %}
 
-ident [a-z_]{2,}
+ident [a-z][a-z_]+
 simbEsp \(|\)|\{|\}|\;|\,|\[|\]
 opRel =|"/="|">="|\>|\<|"<="
 opAsig "->"
 palRes "ent"|"finsi"|"haz"|"mientras"|"large"|"para"|"real"|"regresa"|"si"|"simb"|"sino"
 opArit \+|\-|\*|\/|\%
 dig [0-9]
-entero {dig}+
+entero ^[0-9]+
 octal 0([0-7]){2}
 digHex [0-9A-Fa-f]
 hexDec 0(x|X){digHex}+
 consChar \'[^\']\'
 consString \"[^\"]*\"
 consReal {dig}+\.{dig}+
+errorId ^_.*|[0-9]+.*|[A-Z]+.*
+errorCadena \"[^\n\"]*\n[^\n\"]*\"|\"[^\n\"]*\\n[^\n\"]*\"
+errorReal ^\.[0-9]+$
 
 %%
 
-{consString} insertarCadena(yytext); 
+{errorCadena} fprintf(archErrores, "Error Lexico - Cadena incorrecta: %s\n", yytext);
+{consString} insertarCadena(yytext);
 {palRes} insertarPalReservada(yytext);
 {ident} insertarId(yytext);
 {octal} insertarToken(6, yytext);
@@ -114,6 +119,8 @@ consReal {dig}+\.{dig}+
 {opAsig} insertarToken(3, yytext);
 {opArit} insertarToken(5, yytext);
 {consChar} insertarCaracter(yytext);
+{errorReal} fprintf(archErrores, "Error Lexico - Numero Real incorrecto: %s\n", yytext);
+{errorId} fprintf(archErrores, "Error Lexico - Identificador incorrecto: %s\n", yytext);
 
 %%
 
@@ -139,6 +146,7 @@ archSal = fopen("Tokens.txt","w");
 archCadenas = fopen("Tabla_Cadenas.txt","w");
 archReales = fopen("Tabla_Reales.txt","w");
 archIds = fopen("Tabla_Identificadores.txt","w");
+archErrores = fopen("Errores.txt","w");
 
 // Uso de funcion yylex() para aplicar las reglas definidas en la seccion anterior
 
@@ -150,6 +158,7 @@ fclose(archSal);
 fclose(archCadenas);
 fclose(archReales);
 fclose(archIds);
+fclose(archErrores);
 }
 
 // Funcion que realiza las inserciones de tokens, recibe un numero de clase y un valor
