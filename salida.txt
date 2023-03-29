@@ -1,118 +1,118 @@
- include es un identificador
- < es un operador relacional
- stdio es un identificador
- > es un operador relacional
- int es un identificador
- main es un identificador
- ( es un simbolo especial
- ) es un simbolo especial
- { es un simbolo especial
- ent es una palabra reservada
- digito es un identificador
- -> es un operador de asignación
- 0 es un numero entero
- , es un simbolo especial
- numero es un identificador
- ; es un simbolo especial
- real es una palabra reservada
- xoxo es un identificador
- -> es un operador de asignación
- 5.32 es un numero real
- ; es un simbolo especial
- simb es una palabra reservada
- yop es un identificador
- -> es un operador de asignación
- '@' es un simbolo
- ; es un simbolo especial
- largo es un identificador
- -> es un operador de asignación
- 2677 es un numero entero
- ; es un simbolo especial
- octal es un identificador
- -> es un operador de asignación
- 016 es un numero octal
- ; es un simbolo especial
- hexa es un identificador
- -> es un operador de asignación
- 0x16 es un numero hexadecimal
- ; es un simbolo especial
- printf es un identificador
- ( es un simbolo especial
- "Ejemplo del lenguaje nuevo" es una cadena
- ) es un simbolo especial
- ; es un simbolo especial
- printf es un identificador
- ( es un simbolo especial
- "%ld" es una cadena
- , es un simbolo especial
- largo es un identificador
- ) es un simbolo especial
- ; es un simbolo especial
- haz es una palabra reservada
- { es un simbolo especial
- printf es un identificador
- ( es un simbolo especial
- "%d " es una cadena
- , es un simbolo especial
- digito es un identificador
- + es un operador aritmetico
- + es un operador aritmetico
- ) es un simbolo especial
- ; es un simbolo especial
- } es un simbolo especial
- mientras es una palabra reservada
- { es un simbolo especial
- ( es un simbolo especial
- digito es un identificador
- <= es un operador relacional
- 9 es un numero entero
- ) es un simbolo especial
- ; es un simbolo especial
- } es un simbolo especial
- para es una palabra reservada
- ( es un simbolo especial
- numero es un identificador
- = es un operador relacional
- 0 es un numero entero
- ; es un simbolo especial
- numero es un identificador
- = es un operador relacional
- 3 es un numero entero
- ; es un simbolo especial
- numero es un identificador
- + es un operador aritmetico
- + es un operador aritmetico
- ) es un simbolo especial
- { es un simbolo especial
- printf es un identificador
- ( es un simbolo especial
- "%d" es una cadena
- , es un simbolo especial
- numero es un identificador
- ) es un simbolo especial
- } es un simbolo especial
- si es una palabra reservada
- ( es un simbolo especial
- xoxo es un identificador
- < es un operador relacional
- 10.2 es un numero real
- ) es un simbolo especial
- { es un simbolo especial
- printf es un identificador
- ( es un simbolo especial
- "Es menor" es una cadena
- ) es un simbolo especial
- ; es un simbolo especial
- } es un simbolo especial
- sino es una palabra reservada
- { es un simbolo especial
- printf es un identificador
- ( es un simbolo especial
- "No es menor" es una cadena
- ) es un simbolo especial
- ; es un simbolo especial
- } es un simbolo especial
- regresa es una palabra reservada
- 0 es un numero entero
- ; es un simbolo especial
- } es un simbolo especial
+(0,0)
+(2,<)
+(0,1)
+(2,>)
+(0,2)
+(0,3)
+(1,()
+(1,))
+(1,{)
+(4,0)
+(0,4)
+(3,->)
+(6,0)
+(1,,)
+(0,5)
+(1,;)
+(4,6)
+(0,6)
+(3,->)
+(9,0)
+(1,;)
+(4,9)
+(0,7)
+(3,->)
+(8,@)
+(1,;)
+(0,8)
+(3,->)
+(6,2677)
+(1,;)
+(0,9)
+(3,->)
+(6,016)
+(1,;)
+(0,10)
+(3,->)
+(6,0x16)
+(1,;)
+(0,11)
+(1,()
+(7,0)
+(1,))
+(1,;)
+(0,12)
+(1,()
+(7,1)
+(1,,)
+(0,13)
+(1,))
+(1,;)
+(4,2)
+(1,{)
+(0,14)
+(1,()
+(7,2)
+(1,,)
+(0,15)
+(5,+)
+(5,+)
+(1,))
+(1,;)
+(1,})
+(4,3)
+(1,{)
+(1,()
+(0,16)
+(2,<=)
+(6,9)
+(1,))
+(1,;)
+(1,})
+(4,5)
+(1,()
+(0,17)
+(2,=)
+(6,0)
+(1,;)
+(0,18)
+(2,=)
+(6,3)
+(1,;)
+(0,19)
+(5,+)
+(5,+)
+(1,))
+(1,{)
+(0,20)
+(1,()
+(7,3)
+(1,,)
+(0,21)
+(1,))
+(1,})
+(4,8)
+(1,()
+(0,22)
+(2,<)
+(9,1)
+(1,))
+(1,{)
+(0,23)
+(1,()
+(7,4)
+(1,))
+(1,;)
+(1,})
+(4,10)
+(1,{)
+(0,24)
+(1,()
+(7,5)
+(1,))
+(1,;)
+(1,})
+(4,7)
+(6,0)
+(1,;)
+(1,})

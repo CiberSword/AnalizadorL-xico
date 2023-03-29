@@ -504,8 +504,66 @@ palabras reservadas y enteros de un
 lenguaje x
 */
 FILE *archSal;
-#line 508 "lex.yy.c"
-#line 509 "lex.yy.c"
+FILE *archCadenas;
+FILE *archReales;
+FILE *archIds;
+
+struct token {   
+  int clase;          
+  char* valor;      
+};
+
+struct cadena {   
+  int posicion;          
+  char* valor;      
+};
+
+struct numReal {   
+  int posicion;          
+  char* valor;      
+};
+
+struct palReservada{
+  int posicion;
+  char* valor;
+};
+
+struct identificador {   
+  int posicion;          
+  char* nombre;
+  int tipo;      
+};
+
+struct token *Tokens;
+struct cadena *Tabla_Cadenas;
+struct numReal *Tabla_NumReales;
+struct identificador *Tabla_Ids;
+
+struct palReservada Reservadas[11];
+
+struct palReservada Reservadas[11] = {
+  {0,"ent"},
+  {1,"finsi"},
+  {2,"haz"},
+  {3,"mientras"},
+  {4,"large"},
+  {5,"para"},
+  {6,"real"},
+  {7,"regresa"},
+  {8,"si"},
+  {9,"simb"},
+  {10,"sino"}
+};
+
+int posCadenas = 0;
+int posNumReales = 0;
+int posIds = 0;
+int posTokens = 0;
+
+char buffer[20];
+
+#line 566 "lex.yy.c"
+#line 567 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -722,9 +780,9 @@ YY_DECL
 		}
 
 	{
-#line 30 "AnalizadorL-xico.l"
+#line 84 "AnalizadorL-xico.l"
 
-#line 728 "lex.yy.c"
+#line 786 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -784,71 +842,71 @@ do_action:	/* This label is used only to access EOF actions. */
 case 1:
 /* rule 1 can match eol */
 YY_RULE_SETUP
-#line 31 "AnalizadorL-xico.l"
-fprintf(archSal," %s es una cadena\n", yytext);
+#line 85 "AnalizadorL-xico.l"
+insertarCadena(yytext);
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 32 "AnalizadorL-xico.l"
-fprintf(archSal," %s es una palabra reservada\n", yytext);
+#line 86 "AnalizadorL-xico.l"
+insertarPalReservada(yytext);
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 33 "AnalizadorL-xico.l"
-fprintf(archSal," %s es un identificador\n", yytext);
+#line 87 "AnalizadorL-xico.l"
+insertarId(yytext);
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 34 "AnalizadorL-xico.l"
-fprintf(archSal," %s es un numero octal\n", yytext);
+#line 88 "AnalizadorL-xico.l"
+insertarToken(6, yytext);
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 35 "AnalizadorL-xico.l"
-fprintf(archSal," %s es un numero hexadecimal\n", yytext);
+#line 89 "AnalizadorL-xico.l"
+insertarToken(6, yytext);
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 36 "AnalizadorL-xico.l"
-fprintf(archSal," %s es un numero entero\n", yytext);
+#line 90 "AnalizadorL-xico.l"
+insertarToken(6, yytext);
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 37 "AnalizadorL-xico.l"
-fprintf(archSal," %s es un numero real\n", yytext);
+#line 91 "AnalizadorL-xico.l"
+insertarNumReal(yytext);
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 38 "AnalizadorL-xico.l"
-fprintf(archSal," %s es un simbolo especial\n", yytext);
+#line 92 "AnalizadorL-xico.l"
+insertarToken(1, yytext);
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 39 "AnalizadorL-xico.l"
-fprintf(archSal," %s es un operador relacional\n", yytext);
+#line 93 "AnalizadorL-xico.l"
+insertarToken(2, yytext);
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 40 "AnalizadorL-xico.l"
-fprintf(archSal," %s es un operador de asignación\n", yytext);
+#line 94 "AnalizadorL-xico.l"
+insertarToken(3, yytext);
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 41 "AnalizadorL-xico.l"
-fprintf(archSal," %s es un operador aritmetico\n", yytext);
+#line 95 "AnalizadorL-xico.l"
+insertarToken(5, yytext);
 	YY_BREAK
 case 12:
 /* rule 12 can match eol */
 YY_RULE_SETUP
-#line 42 "AnalizadorL-xico.l"
-fprintf(archSal," %s es un simbolo\n", yytext);
+#line 96 "AnalizadorL-xico.l"
+insertarCaracter(yytext);
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 43 "AnalizadorL-xico.l"
+#line 97 "AnalizadorL-xico.l"
 ECHO;
 	YY_BREAK
-#line 852 "lex.yy.c"
+#line 910 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1853,14 +1911,78 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 43 "AnalizadorL-xico.l"
+#line 97 "AnalizadorL-xico.l"
 
 main(int argc, char *argv[])
 {
+
+Tokens = (struct token*) malloc((posTokens+1) * sizeof(struct token));
+Tabla_Cadenas = (struct cadena*) malloc((posCadenas+1) * sizeof(struct cadena));
+Tabla_NumReales = (struct numReal*) malloc((posNumReales+1) * sizeof(struct numReal));
+Tabla_Ids = (struct identificador*) malloc((posIds+1) * sizeof(struct identificador));
+
 yyin = fopen(argv[1],"r");
 archSal = fopen("salida.txt","w");
+archCadenas = fopen("cadenas.txt","w");
+archReales = fopen("reales.txt","w");
+archIds = fopen("identificadores.txt","w");
 yylex();
 fclose(archSal);
+fclose(archCadenas);
+fclose(archReales);
+fclose(archIds);
 }
 
+void insertarCadena(char *dato){
+    Tabla_Cadenas[posCadenas].posicion = posCadenas;
+    Tabla_Cadenas[posCadenas].valor = dato;
+    sprintf(buffer, "%d", posCadenas);
+    insertarToken(7,buffer);
+    fprintf(archCadenas, "(%i,%s)\n", posCadenas, dato);
+    posCadenas++;
+    Tabla_Cadenas = (struct cadena*)realloc(Tabla_Cadenas, (posCadenas+1) * sizeof(struct cadena)); 
+};
 
+void insertarNumReal(char *dato){
+    Tabla_NumReales[posNumReales].posicion = posNumReales;
+    Tabla_NumReales[posNumReales].valor = dato;
+    sprintf(buffer, "%d", posNumReales);
+    insertarToken(9,buffer);
+    fprintf(archReales, "(%i,%s)\n", posNumReales, dato);
+    posNumReales++;
+    Tabla_NumReales = (struct numReal*)realloc(Tabla_NumReales, (posNumReales+1) * sizeof(struct numReal)); 
+};
+
+void insertarId(char *dato){
+    Tabla_Ids[posIds].posicion = posIds;
+    Tabla_Ids[posIds].nombre = dato;
+    Tabla_Ids[posIds].tipo = -1;
+    sprintf(buffer, "%d", posIds);
+    insertarToken(0,buffer);
+    fprintf(archIds, "(%i,%s,%i)\n", posIds, dato, Tabla_Ids[posIds].tipo);
+    posIds++;
+    Tabla_Ids = (struct identificador*)realloc(Tabla_Ids, (posIds+1) * sizeof(struct identificador)); 
+};
+
+void insertarToken(int numClase, char *dato){
+    Tokens[posTokens].clase = numClase;
+    Tokens[posTokens].valor = dato;
+    fprintf(archSal, "(%i,%s)\n", numClase, dato);
+    posTokens++;
+    Tokens = (struct token*)realloc(Tokens, (posTokens+1) * sizeof(struct token));
+}
+
+void insertarPalReservada(char *dato){
+    int iterador = 0;
+    for (iterador;iterador <=10;iterador++){
+      if (strcmp(dato,Reservadas[iterador].valor) == 0){
+        sprintf(buffer, "%d", iterador);
+        insertarToken(4,buffer);
+      }
+    }
+}
+
+void insertarCaracter(char *dato){
+  sprintf(buffer, "%c", dato[1]);
+  insertarToken(8,buffer);
+}
