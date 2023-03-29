@@ -498,15 +498,27 @@ int yy_flex_debug = 0;
 char *yytext;
 #line 1 "AnalizadorL-xico.l"
 #line 2 "AnalizadorL-xico.l"
-/* Programa que lee un programa y hace el
-reconocimiento de identificadores,
-palabras reservadas y enteros de un
-lenguaje x
+/*
+Facultad de Ingeniería UNAM
+Compiladores
+Grupo: 5
+Primer programa - Analizador Lexico
+Integrantes: 
+- Becerril Olivar Axel Daniel
+- Jarquín Lopez Daniel
+
+Descripción:
+Elaborar un analizador léxico en lex/flex que reconozca los componentes léxicos de un programa de entrada.
 */
+
+// Declaracion de archivos de salida donde se guardaran los tokens y las tablas de literales (cadenas, reales, identificadores)
+
 FILE *archSal;
 FILE *archCadenas;
 FILE *archReales;
 FILE *archIds;
+
+// Declaración de las estructuras para cada elemento
 
 struct token {   
   int clase;          
@@ -534,12 +546,16 @@ struct identificador {
   int tipo;      
 };
 
+// Inicializacion de los arreglos de estructuras
+
 struct token *Tokens;
 struct cadena *Tabla_Cadenas;
 struct numReal *Tabla_NumReales;
 struct identificador *Tabla_Ids;
 
 struct palReservada Reservadas[11];
+
+// Inicializacion especifica para la tabla de palabras reservadas
 
 struct palReservada Reservadas[11] = {
   {0,"ent"},
@@ -555,15 +571,19 @@ struct palReservada Reservadas[11] = {
   {10,"sino"}
 };
 
+// Variables indice para las tablas con arreglos dinamicos, tambien se utilizan para ajustar su tamanio 
+
 int posCadenas = 0;
 int posNumReales = 0;
 int posIds = 0;
 int posTokens = 0;
 
+// Variable buffer para la conversion de variables a cadenas
+
 char buffer[20];
 
-#line 566 "lex.yy.c"
-#line 567 "lex.yy.c"
+#line 586 "lex.yy.c"
+#line 587 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -780,9 +800,10 @@ YY_DECL
 		}
 
 	{
-#line 84 "AnalizadorL-xico.l"
+#line 103 "AnalizadorL-xico.l"
 
-#line 786 "lex.yy.c"
+
+#line 807 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -842,71 +863,71 @@ do_action:	/* This label is used only to access EOF actions. */
 case 1:
 /* rule 1 can match eol */
 YY_RULE_SETUP
-#line 85 "AnalizadorL-xico.l"
-insertarCadena(yytext);
+#line 105 "AnalizadorL-xico.l"
+insertarCadena(yytext); 
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 86 "AnalizadorL-xico.l"
+#line 106 "AnalizadorL-xico.l"
 insertarPalReservada(yytext);
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 87 "AnalizadorL-xico.l"
+#line 107 "AnalizadorL-xico.l"
 insertarId(yytext);
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 88 "AnalizadorL-xico.l"
+#line 108 "AnalizadorL-xico.l"
 insertarToken(6, yytext);
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 89 "AnalizadorL-xico.l"
+#line 109 "AnalizadorL-xico.l"
 insertarToken(6, yytext);
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 90 "AnalizadorL-xico.l"
+#line 110 "AnalizadorL-xico.l"
 insertarToken(6, yytext);
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 91 "AnalizadorL-xico.l"
+#line 111 "AnalizadorL-xico.l"
 insertarNumReal(yytext);
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 92 "AnalizadorL-xico.l"
+#line 112 "AnalizadorL-xico.l"
 insertarToken(1, yytext);
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 93 "AnalizadorL-xico.l"
+#line 113 "AnalizadorL-xico.l"
 insertarToken(2, yytext);
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 94 "AnalizadorL-xico.l"
+#line 114 "AnalizadorL-xico.l"
 insertarToken(3, yytext);
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 95 "AnalizadorL-xico.l"
+#line 115 "AnalizadorL-xico.l"
 insertarToken(5, yytext);
 	YY_BREAK
 case 12:
 /* rule 12 can match eol */
 YY_RULE_SETUP
-#line 96 "AnalizadorL-xico.l"
+#line 116 "AnalizadorL-xico.l"
 insertarCaracter(yytext);
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 97 "AnalizadorL-xico.l"
+#line 118 "AnalizadorL-xico.l"
 ECHO;
 	YY_BREAK
-#line 910 "lex.yy.c"
+#line 931 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1911,27 +1932,54 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 97 "AnalizadorL-xico.l"
+#line 118 "AnalizadorL-xico.l"
 
+// Funcion principal que recibe un archivo de entrada
 main(int argc, char *argv[])
 {
+
+// Asignacion de memoria a los arreglos dinamicos, comienzan con tamanio de 1 elemento
 
 Tokens = (struct token*) malloc((posTokens+1) * sizeof(struct token));
 Tabla_Cadenas = (struct cadena*) malloc((posCadenas+1) * sizeof(struct cadena));
 Tabla_NumReales = (struct numReal*) malloc((posNumReales+1) * sizeof(struct numReal));
 Tabla_Ids = (struct identificador*) malloc((posIds+1) * sizeof(struct identificador));
 
+// Apertura del archivo de entrada
+
 yyin = fopen(argv[1],"r");
-archSal = fopen("salida.txt","w");
-archCadenas = fopen("cadenas.txt","w");
-archReales = fopen("reales.txt","w");
-archIds = fopen("identificadores.txt","w");
+
+// Creacion de los archivos de salida
+
+archSal = fopen("Tokens.txt","w");
+archCadenas = fopen("Tabla_Cadenas.txt","w");
+archReales = fopen("Tabla_Reales.txt","w");
+archIds = fopen("Tabla_Identificadores.txt","w");
+
+// Uso de funcion yylex() para aplicar las reglas definidas en la seccion anterior
+
 yylex();
+
+// Cierre de los archivos de salida
+
 fclose(archSal);
 fclose(archCadenas);
 fclose(archReales);
 fclose(archIds);
 }
+
+// Funcion que realiza las inserciones de tokens, recibe un numero de clase y un valor
+// el cual puede ser un simbolo, un entero o una posicion de una tabla de literales
+
+void insertarToken(int numClase, char *dato){
+    Tokens[posTokens].clase = numClase;
+    Tokens[posTokens].valor = dato;
+    fprintf(archSal, "(%i,%s)\n", numClase, dato);
+    posTokens++;
+    Tokens = (struct token*)realloc(Tokens, (posTokens+1) * sizeof(struct token));
+}
+
+// Funcion especial para insertar cadenas en los tokens y en su tabla de literales
 
 void insertarCadena(char *dato){
     Tabla_Cadenas[posCadenas].posicion = posCadenas;
@@ -1943,6 +1991,8 @@ void insertarCadena(char *dato){
     Tabla_Cadenas = (struct cadena*)realloc(Tabla_Cadenas, (posCadenas+1) * sizeof(struct cadena)); 
 };
 
+// Funcion especial para insertar numeros reales en los tokens y en su tabla de literales
+
 void insertarNumReal(char *dato){
     Tabla_NumReales[posNumReales].posicion = posNumReales;
     Tabla_NumReales[posNumReales].valor = dato;
@@ -1952,6 +2002,8 @@ void insertarNumReal(char *dato){
     posNumReales++;
     Tabla_NumReales = (struct numReal*)realloc(Tabla_NumReales, (posNumReales+1) * sizeof(struct numReal)); 
 };
+
+// Funcion especial para insertar identificadores en los tokens y en su tabla de literales
 
 void insertarId(char *dato){
     Tabla_Ids[posIds].posicion = posIds;
@@ -1964,13 +2016,8 @@ void insertarId(char *dato){
     Tabla_Ids = (struct identificador*)realloc(Tabla_Ids, (posIds+1) * sizeof(struct identificador)); 
 };
 
-void insertarToken(int numClase, char *dato){
-    Tokens[posTokens].clase = numClase;
-    Tokens[posTokens].valor = dato;
-    fprintf(archSal, "(%i,%s)\n", numClase, dato);
-    posTokens++;
-    Tokens = (struct token*)realloc(Tokens, (posTokens+1) * sizeof(struct token));
-}
+// Funcion especial para insertar palabras reservadas, realiza una iteracion en la tabla predefinida
+// de palabras reservadas y envia a insertarToken() el indice correspondiente a la palabra encontrada
 
 void insertarPalReservada(char *dato){
     int iterador = 0;
@@ -1981,6 +2028,10 @@ void insertarPalReservada(char *dato){
       }
     }
 }
+
+// Funcion que quita los apostrofes a los caracteres encontrados por la expresion regular 
+// antes de enviarlos a insertarToken()
+// Ejemplo: '@' -> @
 
 void insertarCaracter(char *dato){
   sprintf(buffer, "%c", dato[1]);
